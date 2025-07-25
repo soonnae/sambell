@@ -7,6 +7,7 @@ import { flush as flushLoadable } from '@humblespark/react-loadable';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import App from 'components/App';
 import gerty from './gerty';
+import DOMPurify from 'dompurify'; // Import DOMPurify
 
 const template = (content, criticalStyles, asyncChunks) => (
   <html lang="en">
@@ -21,7 +22,7 @@ const template = (content, criticalStyles, asyncChunks) => (
       children={
         <div
           id="lunar-industries"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} // Sanitize the content
         />
       }
     />
